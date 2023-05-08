@@ -13,7 +13,7 @@ def main():  # I know main function isn't required in py
     import subprocess
     import os
     import webbrowser
-    import anser
+    import answer
 
     engine = pyttsx3.init()
     voices = engine.getProperty('voices')
@@ -63,16 +63,24 @@ def main():  # I know main function isn't required in py
                     robot()
                 if "một ngày" in query and ("đẹp trời" in query or "tồi tệ" in query) and "để" not in query:
                     try:
-                        speak(anser.check_weather(query))
+                        if "đẹp trời" in query:
+                            speak(answer.answer("đẹp trời"))
+                        elif "tồi tệ" in query:
+                            speak(answer.answer("tồi tệ"))
                         speak("bạn có muốn nói một thứ gì khác không")
                         robot()
                     except:
                         speak("Lỗi không xác định")
                 elif "một ngày" in query and ("đẹp trời" in query or "tồi tệ" in query) and "để" in query:
-                    speak(anser.check_weather(query))
+                    speak(answer.check_weather(query))
                 elif "đẹp trai" in query or "xấu trai" in query or "vẻ đẹp" in query: 
                     try:
-                        speak(anser.handsome(query))
+                        if "đẹp trai" in query:
+                            speak(answer.answer("đẹp trai"))
+                        elif "xấu trai" in query:
+                            speak(answer.answer("xấu trai"))
+                        elif "vẻ đẹp" in query: 
+                            speak(answer.answer("vẻ đẹp"))
                     except:
                         speak("Lỗi không xác định")    
                 if "mở notepad" in query or "mở Wattpad" in query:
@@ -173,8 +181,9 @@ def main():  # I know main function isn't required in py
                     except:
                         speak("Lỗi không xác định")    
                         
-                else :
+                elif "không có gì để hỏi" in query or "để lúc khác" in query:
                     pass
+                    
     
     speak("hãy nói gì đó")
     robot()
