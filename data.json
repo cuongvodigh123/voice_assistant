@@ -26,7 +26,17 @@
             "Bạn là nhất. Nhất bạn rồi",
             "Tôi không phải là người, tôi không thể đánh giá được độ đẹp trai của bạn."
         ]
+    },
+    "bạn tên là gì":{
+        "cautraloi":["Xin chào. Tên của tôi là trợ lý ảo. bạn có thể hỏi tôi về bất cứ điều gì."]
+    },
+    "ăn cơm chưa":{
+        "cautraloi":["Là một trợ lý ảo, tôi không có cơ thể vật lý và không thể ăn cơm được. nhưng bạn có thể sạc pin cho tôi haha"]
+    },
+    "tư vấn cho tôi về việc lựa chọn sản phẩm tốt ":{
+        "cautraloi":["Tôi có thể cung cấp cho bạn thông tin về các sản phẩm giúp bạn chắc chắn hơn về thứ mình bạn muốn mua"]
+    },
+    "tìm kiếm thông tin trên mạng":{
+        "cautraloi":["Tất nhiên, tôi có thể giúp bạn tìm kiếm thông tin trên internet. Bạn chỉ cần đưa ra câu hỏi của mình và tôi sẽ cố gắng tìm kiếm thông tin"]
     }
-
-
 }
