@@ -13,7 +13,7 @@ def main():  # I know main function isn't required in py
     import subprocess
     import os
     import webbrowser
-
+    import anser
 
     engine = pyttsx3.init()
     voices = engine.getProperty('voices')
@@ -33,7 +33,7 @@ def main():  # I know main function isn't required in py
         hour = datetime.datetime.now().hour
         if hour >= 0 and hour < 12:
             speak(f"Chào buổi sáng thưa ngài {user}")
-        elif hour > 12 and hour < 17:
+        elif hour >= 12 and hour < 17:
             speak(f"chào buổi chiều thưa ngài {user}")
         else:
             speak(f"chào buổi tối thưa ngài {user}")
@@ -45,12 +45,11 @@ def main():  # I know main function isn't required in py
             r.pause_threshold = 1
             audio = r.listen(source)
         try:
-            print(".......Recognizing........")
+            print("..........Recognizing.........")
             query = r.recognize_google(audio, language='vi-en')
             print(f"User said: {query}\n")
         except Exception:
-            print("Sorry, I didn't get that, I'd appreciate if you could try again  ")
-            query = "NONE"
+            query = "hãy nói lại"
         return query
 
     greet_user()
@@ -60,22 +59,26 @@ def main():  # I know main function isn't required in py
 
             if True:
                 query = take_user_cmd().lower()
-
-                if "một ngày" in query and ("đẹp trời" in query or "tồi tệ" in query):
+                if query == "hãy nói lại":
+                    robot()
+                if "một ngày" in query and ("đẹp trời" in query or "tồi tệ" in query) and "để" not in query:
                     try:
-                        speak("Tôi chỉ là 1 công cụ máy tính, tôi không thể biết được hôm nay như thế nào")
+                        speak(anser.check_weather(query))
                         speak("bạn có muốn nói một thứ gì khác không")
                         robot()
                     except:
                         speak("Lỗi không xác định")
-                if "mở notepad" in query:
+                elif "một ngày" in query and ("đẹp trời" in query or "tồi tệ" in query) and "để" in query:
+                    speak(anser.check_weather(query))
+                    
+                if "mở notepad" in query or "mở Wattpad" in query:
                     try:
                         speak("mở nốt bát")
                         subprocess.Popen(["notepad.exe"])
                     except:
                         speak("Lỗi không xác định")
 
-                elif "play on youtube" in query:
+                elif ("play" in query and "youtube" in query) or "mở youtube"in query:
                     try:
                         speak("bạn muốn mở gì ở youtube?")
                         req = take_user_cmd().lower()
@@ -112,21 +115,21 @@ def main():  # I know main function isn't required in py
                         speak("Lỗi không xác định")
                 elif "mở văn bản" in query:
                     try:
-                        speak("opening word")
+                        speak("mở trình soạn thảo văn bản ")
                         os.startfile(r'C:\Users\ADMIN\Desktop\Word 2016.lnk')
                     except:
                         speak("Lỗi không xác định")
                                 
                 elif "mở trình duyệt" in query:
                     try:
-                        speak("opening chrome")
+                        speak("mở trình duyệt chôm")
                         # os.startfile(r'C:\Users\Public\Desktop\Google Chrome.lnk')
                         os.startfile("C:\Program Files (x86)\Google\Chrome\Application\chrome_proxy.exe")
                         
                     except:
                         speak("Lỗi không xác định")
 
-                elif "mở thư điện tử" in query:
+                elif "mở thư điện tử" in query or "gửi thư cho" in query:
                     try:
                         chrome_path = "C:\Program Files (x86)\Google\Chrome\Application\chrome_proxy.exe"
                         webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path))
@@ -135,7 +138,7 @@ def main():  # I know main function isn't required in py
                         speak("Lỗi không xác định")
                 elif "mở zalo" in query:
                     try:
-                        
+                        speak("mở zalo")
                         chrome_path = "C:\Program Files (x86)\Google\Chrome\Application\chrome_proxy.exe"
                         webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path))
                         webbrowser.get('chrome').open('https://chat.zalo.me/')
@@ -155,17 +158,21 @@ def main():  # I know main function isn't required in py
                         speak("tôi tìm được thứ này trên web")
                         chrome_path = "C:\Program Files (x86)\Google\Chrome\Application\chrome_proxy.exe"
                         webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path))
-                        url = search(query)[0]
+                        query = query.replace("hãy tìm kiếm","")
+                        query = query.replace("trên mạng","")
                         for url in search(query):
+                            x=url
                             print(url)
-                        webbrowser.get('chrome').open(url)
+                            break
+                        webbrowser.get('chrome').open(x)
                         
                     except:
                         speak("Lỗi không xác định")    
                         
-                else:
+                else :
                     pass
-
+    
+    speak("hãy nói gì đó")
     robot()
 
     while True:
@@ -173,16 +180,16 @@ def main():  # I know main function isn't required in py
 
         query = take_user_cmd().lower()
 
-        if query == "có" or query == "đúng vậy":
+        if query == "có" or query == "đúng vậy" or query =="tất nhiên":
             speak("rất tốt, hãy hỏi tôi tiếp đi")
             robot()
         elif query == "không" or query == "không phải bây giờ" or query == "nâu" or query == "lâu":
             speak("cảm ơn vì đã sử dụng tôi")
             hour = datetime.datetime.now().hour
             if hour >= 22 and hour < 6:
-                speak(f"chúc buổi tối tốt lành{user}")
+                speak(f"chúc buổi tối tốt lành")
             else:
-                speak(f"chúc một ngày mới an lành{user}")
+                speak(f"chúc một ngày mới an lành ")
             break
         else:
             speak(print("Điều đó có lẽ vượt quá khả năng của tôi vào lúc này"))
