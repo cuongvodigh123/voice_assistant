@@ -83,7 +83,7 @@ def main():  # I know main function isn't required in py
                     except:
                         speak("Lỗi không xác định")
 
-                elif "thời gian" in query:
+                elif "hãy cho tôi biết" in query and "mấy giờ" in query and ("lúc này" in query or "bây giờ" in query or "núc này" in query or "núc lày" in query):
                     try:
                         speak(datetime.date.today())
                         speak(time.strftime("%H:%M:%S", time.localtime()))

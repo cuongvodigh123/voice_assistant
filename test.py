@@ -20,6 +20,9 @@ def main():  # I know main function isn't required in py
     engine.setProperty('rate', 150)
     engine.setProperty('volume', 1.0)
     engine.runAndWait()
+    
+    user = "Cương"
+    
     def speak(audio):
         engine.say(audio)
         engine.runAndWait()
@@ -48,10 +51,13 @@ def main():  # I know main function isn't required in py
                         speak("tôi tìm được thứ này trên web")
                         chrome_path = "C:\Program Files (x86)\Google\Chrome\Application\chrome_proxy.exe"
                         webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path))
-                        # url = str(search(query)[0])
-                        # for url in search(query):
-                        #     print(url)
-                        webbrowser.get('chrome').open("https://www.facebook.com/")
+                        query = query.replace("hãy tìm kiếm","")
+                        query = query.replace("trên mạng","")
+                        for url in search(query):
+                            x=url
+                            print(url)
+                            break
+                        webbrowser.get('chrome').open(x)
                         
                     except:
                         speak("Lỗi không xác định")    
