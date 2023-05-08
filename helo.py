@@ -25,7 +25,7 @@ def main():  # I know main function isn't required in py
         engine.say(audio)
         engine.runAndWait()
 
-    speak("Tôi là chatbot")
+    speak("Tôi là trợ lý của bạn")
     user = "Cương"
     # user = input("type your name: ")
 
@@ -70,7 +70,11 @@ def main():  # I know main function isn't required in py
                         speak("Lỗi không xác định")
                 elif "một ngày" in query and ("đẹp trời" in query or "tồi tệ" in query) and "để" in query:
                     speak(anser.check_weather(query))
-                    
+                elif "đẹp trai" in query or "xấu trai" in query or "vẻ đẹp" in query: 
+                    try:
+                        speak(anser.handsome(query))
+                    except:
+                        speak("Lỗi không xác định")    
                 if "mở notepad" in query or "mở Wattpad" in query:
                     try:
                         speak("mở nốt bát")
