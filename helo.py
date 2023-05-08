@@ -96,6 +96,16 @@ def main():  # I know main function isn't required in py
                         speak(answer.answer("sức khoẻ tốt",3))
                     except:
                         speak("Lỗi 4")  
+                elif "bạn tên là gì" in query:
+                    try:
+                        speak(answer.answer("bạn tên là gì",1))
+                    except:
+                        speak("Lỗi 4")  
+                elif "ăn cơm chưa" in query:
+                    try:
+                        speak(answer.answer("ăn cơm chưa",1))
+                    except:
+                        speak("Lỗi 4")  
                 elif "tìm kiếm thông tin trên mạng" in query:
                     try:
                         speak(answer.answer("tìm kiếm thông tin trên mạng",1))
@@ -216,7 +226,7 @@ def main():  # I know main function isn't required in py
     
     speak("hãy nói gì đó để tôi có thể giúp bạn")
     # robot(take_user_cmd().lower())
-    robot("muốn tìm hiểu về công ty công nghệ")
+    robot("bạn tên là gì")
     while True:
         speak("Bạn có thêm câu hỏi gì với tôi không ? \n")
 

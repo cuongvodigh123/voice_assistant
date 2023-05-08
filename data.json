@@ -28,10 +28,16 @@
         ]
     },
     "bạn tên là gì":{
-        "cautraloi":["Xin chào. Tên của tôi là trợ lý ảo. bạn có thể hỏi tôi về bất cứ điều gì."]
+        "cautraloi":[
+            "Xin chào. Tên của tôi là trợ lý ảo.Tôi được tạo ra bởi ngài Cương vĩ đại. bạn có thể hỏi tôi về bất cứ điều gì.",
+            "Như tôi đã nói ở trên, tôi là trợ lý ảo của bạn"
+        ]
     },
     "ăn cơm chưa":{
-        "cautraloi":["Là một trợ lý ảo, tôi không có cơ thể vật lý và không thể ăn cơm được. nhưng bạn có thể sạc pin cho tôi haha"]
+        "cautraloi":[
+            "Là một trợ lý ảo, tôi không có cơ thể vật lý và không thể ăn cơm được. nhưng bạn có thể sạc pin cho tôi. ha ha",
+            "Tôi không thể ăn hay làm bất kỳ như con người nên đừng hỏi tôi như thế"
+        ]
     },
     "tư vấn cho tôi về việc lựa chọn sản phẩm tốt":{
         "cautraloi":["Tôi có thể cung cấp cho bạn thông tin về các sản phẩm giúp bạn chắc chắn hơn về thứ mình bạn muốn mua"]
