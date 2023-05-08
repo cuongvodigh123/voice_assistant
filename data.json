@@ -33,10 +33,26 @@
     "ăn cơm chưa":{
         "cautraloi":["Là một trợ lý ảo, tôi không có cơ thể vật lý và không thể ăn cơm được. nhưng bạn có thể sạc pin cho tôi haha"]
     },
-    "tư vấn cho tôi về việc lựa chọn sản phẩm tốt ":{
+    "tư vấn cho tôi về việc lựa chọn sản phẩm tốt":{
         "cautraloi":["Tôi có thể cung cấp cho bạn thông tin về các sản phẩm giúp bạn chắc chắn hơn về thứ mình bạn muốn mua"]
     },
     "tìm kiếm thông tin trên mạng":{
         "cautraloi":["Tất nhiên, tôi có thể giúp bạn tìm kiếm thông tin trên internet. Bạn chỉ cần đưa ra câu hỏi của mình và tôi sẽ cố gắng tìm kiếm thông tin"]
+    },
+    "sức khỏe tốt":{
+        "cautraloi":[
+            "Nếu bạn muốn có một sức khỏe tốt thì yếu tố đầu tiên cần phải có đó chính là một tâm trí khỏe mạnh.",
+            "Thay đổi cách ăn uống là bước đi quan trọng để bạn có một cơ thể khỏe mạnh",
+            "Đảm bảo đủ nước là chìa khóa cho một cuộc sống khỏe mạnh",
+            "Tập thể dục chính là yếu tố quyết định mà không gì có thể thay thế được.",
+            "Nếu như bạn có một cơ thể sạch sẽ, thơm tho, bạn sẽ cảm thấy tinh thần mình thoải mái hơn rất nhiều đúng không nào?",
+            "Ngủ là một nhu cầu sống còn đối với cơ thể chúng ta"
+        ]
+    },
+    "công ty công nghệ":{
+        "cautraloi":[
+            "Tôi có thể giới thiệu cho bạn một số công ty công nghệ hàng đầu như Apple, Microsoft, Google, Facebook, Amazon và Samsung."
+        ]
     }
+
 }

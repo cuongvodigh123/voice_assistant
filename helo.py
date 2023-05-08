@@ -25,7 +25,7 @@ def main():  # I know main function isn't required in py
         engine.say(audio)
         engine.runAndWait()
 
-    speak("Tôi là trợ lý của bạn")
+    
     user = "Cương"
     # user = input("type your name: ")
 
@@ -37,7 +37,10 @@ def main():  # I know main function isn't required in py
             speak(f"chào buổi chiều thưa ngài {user}")
         else:
             speak(f"chào buổi tối thưa ngài {user}")
-
+            
+    greet_user()        
+    speak("Tôi là trợ lý của bạn")
+    
     def take_user_cmd():
         r = sr.Recognizer()
         with sr.Microphone() as source:
@@ -52,12 +55,11 @@ def main():  # I know main function isn't required in py
             query = "hãy nói lại"
         return query
 
-    greet_user()
-
     def robot(query):
         if __name__ == "__main__":
 
             if True:
+                ok=0
                 print("query = ",query)
                 if query == "hãy nói lại":
                     robot(take_user_cmd())
@@ -73,7 +75,10 @@ def main():  # I know main function isn't required in py
                         speak("Lỗi 1")
                 elif "một ngày" in query and ("đẹp trời" in query or "tồi tệ" in query) and "để" in query:
                     try:
-                        speak(answer.answer(query,1))
+                        if "đẹp trời" in query:
+                            speak(answer.answer("đẹp trời",1))
+                        elif "tồi tệ" in query:
+                            speak(answer.answer("tồi tệ",2))
                     except:
                         speak("Lỗi 2")
                 elif "đẹp trai" in query or "xấu trai" in query or "vẻ đẹp" in query: 
@@ -85,14 +90,33 @@ def main():  # I know main function isn't required in py
                         elif "vẻ đẹp" in query: 
                             speak(answer.answer("vẻ đẹp",1))
                     except:
-                        speak("Lỗi 3")            
+                        speak("Lỗi 3")  
+                elif "sức khoẻ tốt" in query:
+                    try:
+                        speak(answer.answer("sức khoẻ tốt",3))
+                    except:
+                        speak("Lỗi 4")  
+                elif "tìm kiếm thông tin trên mạng" in query:
+                    try:
+                        speak(answer.answer("tìm kiếm thông tin trên mạng",1))
+                        
+                        robot(take_user_cmd().lower())
+                    except:
+                        speak("Lỗi 6") 
+                elif "muốn tìm hiểu" in query and "công ty công nghệ" in query:
+                    try:
+                        speak(answer.answer("công ty công nghệ",1))
+                    except:
+                        speak("Lỗi 6")
+                else:
+                    ok+=1          
                 #second 
                 if "mở notepad" in query or "mở wattpad" in query:
                     try:
                         speak("mở nốt bát")
                         subprocess.Popen(["notepad.exe"])
                     except:
-                        speak("Lỗi 4")
+                        speak("Lỗi 5")
 
                 elif ("play" in query and "youtube" in query) or "mở youtube"in query:
                     try:
@@ -100,51 +124,50 @@ def main():  # I know main function isn't required in py
                         req = take_user_cmd().lower()
                         kit.playonyt(req)
                     except:
-                        speak("Lỗi 5")
-                elif ("nghe" in query or "mở" in query) and "nhạc mario":
+                        speak("Lỗi 6")
+                elif ("nghe" in query or "mở" in query) and "nhạc mario" in query:
                     sound.nhacmario()
                 elif "hãy cho tôi biết" in query and "mấy giờ" in query and ("lúc này" in query or "bây giờ" in query or "núc này" in query or "núc lày" in query):
                     try:
                         speak(datetime.date.today())
                         speak(time.strftime("%H:%M:%S", time.localtime()))
                     except:
-                        speak("Lỗi 6")
+                        speak("Lỗi 7")
 
                 elif "mở thư mục" in query:
                     try:
                         speak("mở thư mục")
                         os.startfile('explorer.exe')
                     except:
-                        speak("Lỗi 7")
+                        speak("Lỗi 8")
 
                 elif "mở máy tính" in query:
                     try:
                         speak("đang mở máy tính")
                         os.startfile('calc.exe')
                     except:
-                        speak("Lỗi 8")
+                        speak("Lỗi 9")
 
                 elif "mở cài đặt" in query:
                     try:
                         speak("đang mở cài đặt")
                         os.system("start ms-settings:")
                     except:
-                        speak("Lỗi 9")
+                        speak("Lỗi 10")
                 elif "mở văn bản" in query:
                     try:
                         speak("mở trình soạn thảo văn bản ")
                         os.startfile(r'C:\Users\ADMIN\Desktop\Word 2016.lnk')
                     except:
-                        speak("Lỗi 10")
+                        speak("Lỗi 11")
                                 
                 elif "mở trình duyệt" in query:
                     try:
                         speak("mở trình duyệt chôm")
-                        # os.startfile(r'C:\Users\Public\Desktop\Google Chrome.lnk')
                         os.startfile("C:\Program Files (x86)\Google\Chrome\Application\chrome_proxy.exe")
                         
                     except:
-                        speak("Lỗi 11")
+                        speak("Lỗi 12")
 
                 elif "mở thư điện tử" in query or "gửi thư cho" in query:
                     try:
@@ -152,7 +175,7 @@ def main():  # I know main function isn't required in py
                         webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path))
                         webbrowser.get('chrome').open('https://mail.google.com/mail/')
                     except:
-                        speak("Lỗi 12")
+                        speak("Lỗi 13")
                 elif "mở zalo" in query:
                     try:
                         speak("mở zalo")
@@ -160,7 +183,7 @@ def main():  # I know main function isn't required in py
                         webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path))
                         webbrowser.get('chrome').open('https://chat.zalo.me/')
                     except:
-                        speak("Lỗi 13")
+                        speak("Lỗi 14")
                 
                 elif "mở facebook" in query:
                     try:
@@ -168,7 +191,7 @@ def main():  # I know main function isn't required in py
                         webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path))
                         webbrowser.get('chrome').open('https://www.facebook.com/')
                     except:
-                        speak("Lỗi 14")
+                        speak("Lỗi 15")
                 
                 elif "hãy tìm kiếm" in query and "trên mạng" in query:
                     try:
@@ -184,15 +207,16 @@ def main():  # I know main function isn't required in py
                         webbrowser.get('chrome').open(x)
                         
                     except:
-                        speak("Lỗi 15")    
+                        speak("Lỗi 16")    
                         
-                elif "không có gì để hỏi" in query or "để lúc khác" in query:
-                    pass
-                    
+                else:
+                    ok+=1
+                if ok>=2:
+                    speak("tôi không hiểu hoặc không thể giúp bạn, hãy hỏi một câu khác dễ hơn với tôi")    
     
     speak("hãy nói gì đó để tôi có thể giúp bạn")
-    robot(take_user_cmd().lower())
-
+    # robot(take_user_cmd().lower())
+    robot("muốn tìm hiểu về công ty công nghệ")
     while True:
         speak("Bạn có thêm câu hỏi gì với tôi không ? \n")
 
