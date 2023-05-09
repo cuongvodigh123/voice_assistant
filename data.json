@@ -43,7 +43,10 @@
         "cautraloi":["Tôi có thể cung cấp cho bạn thông tin về các sản phẩm giúp bạn chắc chắn hơn về thứ mình bạn muốn mua"]
     },
     "tìm kiếm thông tin trên mạng":{
-        "cautraloi":["Tất nhiên, tôi có thể giúp bạn tìm kiếm thông tin trên internet. Bạn chỉ cần đưa ra câu hỏi của mình và tôi sẽ cố gắng tìm kiếm thông tin"]
+        "cautraloi":[
+            "Tất nhiên, tôi có thể giúp bạn tìm kiếm thông tin trên internet. Bạn chỉ cần đưa ra thứ mình muốn tìm với tôi"
+            
+        ]
     },
     "sức khỏe tốt":{
         "cautraloi":[

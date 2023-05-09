@@ -1,4 +1,4 @@
-def main():  # I know main function isn't required in py
+def main(): 
     import pyttsx3
     import speech_recognition as sr
     import datetime
@@ -15,6 +15,7 @@ def main():  # I know main function isn't required in py
     import webbrowser
     import answer
     import sound
+    wikipedia.set_lang("vi")
     engine = pyttsx3.init()
     voices = engine.getProperty('voices')
     engine.setProperty('voice', voices[1].id)
@@ -39,7 +40,7 @@ def main():  # I know main function isn't required in py
             speak(f"chào buổi tối thưa ngài {user}")
             
     greet_user()        
-    speak("Tôi là trợ lý của bạn")
+    speak("Tôi là trợ lý âm thanh của bạn")
     
     def take_user_cmd():
         r = sr.Recognizer()
@@ -106,11 +107,17 @@ def main():  # I know main function isn't required in py
                         speak(answer.answer("ăn cơm chưa",1))
                     except:
                         speak("Lỗi 4")  
-                elif "tìm kiếm thông tin trên mạng" in query:
+                elif ("tìm kiếm" in query or "tìm" in query) and "trên mạng" in query:
                     try:
                         speak(answer.answer("tìm kiếm thông tin trên mạng",1))
-                        
-                        robot(take_user_cmd().lower())
+                        query=take_user_cmd().lower()
+                        chrome_path = "C:\Program Files (x86)\Google\Chrome\Application\chrome_proxy.exe"
+                        webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path))
+                        for url in search(query):
+                            x=url
+                            print(url)
+                            break
+                        webbrowser.get('chrome').open(x)
                     except:
                         speak("Lỗi 6") 
                 elif "muốn tìm hiểu" in query and "công ty công nghệ" in query:
@@ -118,6 +125,12 @@ def main():  # I know main function isn't required in py
                         speak(answer.answer("công ty công nghệ",1))
                     except:
                         speak("Lỗi 6")
+                elif "hãy định nghĩa" in query:
+                    try:
+                        query = query.replace("hãy định nghĩa","")
+                        speak(wikipedia.summary(query))
+                    except:
+                        speak("Lỗi định nghĩa")
                 else:
                     ok+=1          
                 #second 
@@ -226,7 +239,7 @@ def main():  # I know main function isn't required in py
     
     speak("hãy nói gì đó để tôi có thể giúp bạn")
     # robot(take_user_cmd().lower())
-    robot("bạn tên là gì")
+    robot("hãy định nghĩa việt nam")
     while True:
         speak("Bạn có thêm câu hỏi gì với tôi không ? \n")
 
