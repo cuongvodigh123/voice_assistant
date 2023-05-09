@@ -107,17 +107,14 @@ def main():
                         speak(answer.answer("ăn cơm chưa",1))
                     except:
                         speak("Lỗi 4")  
-                elif ("tìm kiếm" in query or "tìm" in query) and "trên mạng" in query:
+                elif "tìm kiếm thông tin trên mạng" in query:
                     try:
                         speak(answer.answer("tìm kiếm thông tin trên mạng",1))
                         query=take_user_cmd().lower()
                         chrome_path = "C:\Program Files (x86)\Google\Chrome\Application\chrome_proxy.exe"
                         webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path))
-                        for url in search(query):
-                            x=url
-                            print(url)
-                            break
-                        webbrowser.get('chrome').open(x)
+                        url = f"https://www.google.com/search?q={query}"
+                        webbrowser.open(url)
                     except:
                         speak("Lỗi 6") 
                 elif "muốn tìm hiểu" in query and "công ty công nghệ" in query:
@@ -209,8 +206,8 @@ def main():
                 elif "mở trình duyệt" in query:
                     try:
                         speak("mở trình duyệt chôm")
-                        os.startfile("C:\Program Files (x86)\Google\Chrome\Application\chrome_proxy.exe")
-                        
+                        chrome_path = r'C:\Program Files (x86)\Google\Chrome\Application\chrome_proxy.exe'
+                        subprocess.Popen([chrome_path])
                     except:
                         speak("Lỗi 12")
 
@@ -241,27 +238,27 @@ def main():
                 elif "hãy tìm kiếm" in query and "trên mạng" in query:
                     try:
                         speak("tôi tìm được thứ này trên web")
+                        if answer.is_chrome_running() == False:
+                            chrome_path = r'C:\Program Files (x86)\Google\Chrome\Application\chrome_proxy.exe'
+                            subprocess.Popen([chrome_path])
                         chrome_path = "C:\Program Files (x86)\Google\Chrome\Application\chrome_proxy.exe"
                         webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path))
                         query = query.replace("hãy tìm kiếm","")
                         query = query.replace("trên mạng","")
-                        for url in search(query):
-                            x=url
-                            print(url)
-                            break
-                        webbrowser.get('chrome').open(x)
+                        url = f"https://www.google.com/search?q={query}"
+                        webbrowser.open(url)
                         
                     except:
                         speak("Lỗi 16")    
-                        
                 else:
                     ok+=1
-                if ok>=2:
+                if ok==2:
                     speak("tôi không hiểu hoặc không thể giúp bạn, hãy hỏi một câu khác dễ hơn với tôi")    
+                    ok=0
     
     speak("hãy nói gì đó để tôi có thể giúp bạn")
-    robot(take_user_cmd().lower())
-    # robot("hãy định nghĩa người  việt nam")
+    # robot(take_user_cmd().lower())
+    robot("tìm kiếm thông tin trên mạng")
     while True:
         speak("Bạn có thêm câu hỏi gì với tôi không ? \n")
 
