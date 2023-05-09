@@ -40,7 +40,9 @@
         ]
     },
     "tư vấn cho tôi về việc lựa chọn sản phẩm tốt":{
-        "cautraloi":["Tôi có thể cung cấp cho bạn thông tin về các sản phẩm giúp bạn chắc chắn hơn về thứ mình bạn muốn mua"]
+        "cautraloi":[
+            "Tôi có thể cung cấp cho bạn thông tin về các sản phẩm giúp bạn chắc chắn hơn về thứ mình bạn muốn mua"
+        ]
     },
     "tìm kiếm thông tin trên mạng":{
         "cautraloi":[

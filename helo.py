@@ -152,6 +152,8 @@ def main():
                         speak("Lỗi định nghĩa")
                 else:
                     ok+=1          
+                    
+                    
                 #second 
                 if "mở notepad" in query or "mở wattpad" in query:
                     try:
@@ -169,6 +171,8 @@ def main():
                         speak("Lỗi 6")
                 elif ("nghe" in query or "mở" in query) and "nhạc mario" in query:
                     sound.nhacmario()
+                elif ("nghe" in query or "mở" in query) and ("nhạc sôi động" in query or "thứ gì đó vui vẻ" in query):
+                    sound.nhachiphop()
                 elif "hãy cho tôi biết" in query and "mấy giờ" in query and ("lúc này" in query or "bây giờ" in query or "núc này" in query or "núc lày" in query):
                     try:
                         speak(datetime.date.today())
@@ -210,7 +214,16 @@ def main():
                         subprocess.Popen([chrome_path])
                     except:
                         speak("Lỗi 12")
-
+                elif "tắt trình duyệt" in query:
+                    try:
+                        speak("hãy chắc chắn rằng đã lưu dữ liệu cần thiết")
+                        speak("Bạn có chắc chắn muốn tắt nó không")
+                        k=take_user_cmd().lower()
+                        if "tôi chắc chắn" in k or "tất nhiên" in query:
+                            chrome_pid = os.popen('tasklist /FI "IMAGENAME eq chrome.exe" /FO CSV /NH').read().split(",")[1]
+                            os.system(f"taskkill /F /PID {chrome_pid}")
+                    except:
+                        speak("Lỗi 13")
                 elif "mở thư điện tử" in query or "gửi thư cho" in query:
                     try:
                         chrome_path = "C:\Program Files (x86)\Google\Chrome\Application\chrome_proxy.exe"
@@ -227,7 +240,7 @@ def main():
                     except:
                         speak("Lỗi 14")
                 
-                elif "mở facebook" in query:
+                elif "mở facebook" in query or "facebook" in query:
                     try:
                         chrome_path = "C:\Program Files (x86)\Google\Chrome\Application\chrome_proxy.exe"
                         webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path))
@@ -258,7 +271,7 @@ def main():
     
     speak("hãy nói gì đó để tôi có thể giúp bạn")
     # robot(take_user_cmd().lower())
-    robot("tìm kiếm thông tin trên mạng")
+    robot("tắt trình duyệt")
     while True:
         speak("Bạn có thêm câu hỏi gì với tôi không ? \n")
 
@@ -266,7 +279,7 @@ def main():
         if query == "không" or query == "không phải bây giờ" or query == "hâm" or query=="âm":
             speak("cảm ơn vì đã sử dụng tôi")
             hour = datetime.datetime.now().hour
-            if hour >= 22 and hour < 6:
+            if hour >= 15 and hour < 6: 
                 speak(f"chúc buổi tối tốt lành")
             else:
                 speak(f"chúc một ngày mới an lành ")
