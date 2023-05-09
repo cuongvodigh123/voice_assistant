@@ -127,8 +127,30 @@ def main():
                         speak("Lỗi 6")
                 elif "hãy định nghĩa" in query:
                     try:
+                        speak("đang định nghĩa")
                         query = query.replace("hãy định nghĩa","")
-                        speak(wikipedia.summary(query))
+                        data=wikipedia.summary(query).split(".")
+                        speak(data[0])
+                        data.pop(0)
+                        while True:
+                            if len(data)==0:
+                                speak("xin cảm ơn đã lắng nghe")
+                                break
+                            speak("Bạn muốn nghe tiếp không")
+                            a=take_user_cmd().lower()
+                            # a=input()
+                            if a=="không" or a=="tôi không muốn" or a=="đủ rồi" or len(data)==0 or "dừng lại" == a:
+                                speak("xin cảm ơn đã lắng nghe")
+                                break
+                            else:
+                                if len(data)>1:
+                                    speak(data[0])
+                                    data.pop(0)
+                                    speak(data[0])
+                                    data.pop(0)
+                                else:
+                                    speak(data[0])
+                                    data.pop(0)
                     except:
                         speak("Lỗi định nghĩa")
                 else:
@@ -238,8 +260,8 @@ def main():
                     speak("tôi không hiểu hoặc không thể giúp bạn, hãy hỏi một câu khác dễ hơn với tôi")    
     
     speak("hãy nói gì đó để tôi có thể giúp bạn")
-    # robot(take_user_cmd().lower())
-    robot("hãy định nghĩa việt nam")
+    robot(take_user_cmd().lower())
+    # robot("hãy định nghĩa người  việt nam")
     while True:
         speak("Bạn có thêm câu hỏi gì với tôi không ? \n")
 
