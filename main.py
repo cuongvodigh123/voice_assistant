@@ -290,7 +290,7 @@ def main():
     
     speak("hãy nói gì đó để tôi có thể giúp bạn")
     # robot(take_user_cmd().lower())
-    robot("chat bót nâng cao")
+    robot("hãy nói lại")
     while True:
         speak("Bạn có thêm câu hỏi gì với tôi không ? \n")
 
