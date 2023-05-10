@@ -8,7 +8,31 @@ import tensorflow
 import random
 import json
 import pickle
-
+# //////////////////////////////////////
+import pyttsx3
+import speech_recognition as sr
+engine = pyttsx3.init()
+voices = engine.getProperty('voices')
+engine.setProperty('voice', voices[1].id)
+engine.setProperty('rate', 150)
+engine.setProperty('volume', 1.0)
+engine.runAndWait()
+def take_english():
+    # query = input("user said: ")
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        print("..........LISTENING...........")
+        r.pause_threshold = 1
+        audio = r.listen(source)
+    try:
+        print("..........Recognizing.........")
+        query = r.recognize_google(audio, language='en')
+        print(f"User said: {query}\n")
+    except Exception:
+        query = "hãy nói lại"
+    return query
+    
+# ?////////////////////////////////////////
 with open("intents.json",encoding='utf-8') as file:
     data = json.load(file)
     
@@ -98,9 +122,12 @@ def bag_of_words(s, words):
 def chat():
     print("Start talking with the bot (type quit to stop)!")
     while True:
-        inp = input("You: ")
-        if inp.lower() == "quit":
-            return "quit"
+        # inp = input("You: ")
+        inp = take_english()
+        while inp=="":
+            inp = take_english()
+        if inp.lower() == "out":
+            return "out"
             break
 
         results = model.predict([bag_of_words(inp, words)])
