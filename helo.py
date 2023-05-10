@@ -22,10 +22,11 @@ def main():
     engine.setProperty('rate', 150)
     engine.setProperty('volume', 1.0)
     engine.runAndWait()
+    
     def speak(audio):
-        engine.say(audio)
-        engine.runAndWait()
-
+        print(audio)
+        # engine.say(audio)
+        # engine.runAndWait()
     
     user = "Cương"
     # user = input("type your name: ")
@@ -43,17 +44,18 @@ def main():
     speak("Tôi là trợ lý âm thanh của bạn")
     
     def take_user_cmd():
-        r = sr.Recognizer()
-        with sr.Microphone() as source:
-            print("..........LISTENING...........")
-            r.pause_threshold = 1
-            audio = r.listen(source)
-        try:
-            print("..........Recognizing.........")
-            query = r.recognize_google(audio, language='vi-en')
-            print(f"User said: {query}\n")
-        except Exception:
-            query = "hãy nói lại"
+        query = input("user said: ")
+        # r = sr.Recognizer()
+        # with sr.Microphone() as source:
+        #     print("..........LISTENING...........")
+        #     r.pause_threshold = 1
+        #     audio = r.listen(source)
+        # try:
+        #     print("..........Recognizing.........")
+        #     query = r.recognize_google(audio, language='vi-en')
+        #     print(f"User said: {query}\n")
+        # except Exception:
+        #     query = "hãy nói lại"
         return query
 
     def robot(query):
@@ -150,6 +152,11 @@ def main():
                                     data.pop(0)
                     except:
                         speak("Lỗi định nghĩa")
+                elif answer.check_query(query) != None:
+                    try:
+                        speak(answer.check_query(query))
+                    except:
+                        speak("lỗi")
                 else:
                     ok+=1          
                     
@@ -271,7 +278,7 @@ def main():
     
     speak("hãy nói gì đó để tôi có thể giúp bạn")
     # robot(take_user_cmd().lower())
-    robot("tắt trình duyệt")
+    robot("bạn có cảm xúc không")
     while True:
         speak("Bạn có thêm câu hỏi gì với tôi không ? \n")
 

@@ -50,7 +50,7 @@
             
         ]
     },
-    "sức khỏe tốt":{
+    "sức khoẻ tốt":{
         "cautraloi":[
             "Nếu bạn muốn có một sức khỏe tốt thì yếu tố đầu tiên cần phải có đó chính là một tâm trí khỏe mạnh.",
             "Thay đổi cách ăn uống là bước đi quan trọng để bạn có một cơ thể khỏe mạnh",
@@ -63,6 +63,11 @@
     "công ty công nghệ":{
         "cautraloi":[
             "Tôi có thể giới thiệu cho bạn một số công ty công nghệ hàng đầu như Apple, Microsoft, Google, Facebook, Amazon và Samsung."
+        ]
+    },
+    "có cảm xúc không":{
+        "cautraloi":[
+            "tôi là máy. tôi không trả lời được câu hỏi này"
         ]
     }
 

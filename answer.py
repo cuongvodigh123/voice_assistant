@@ -13,3 +13,9 @@ def is_chrome_running():
         if 'chrome' in process.name():
             return True
     return False
+def check_query(query):
+    for i in data:
+        if i in query:
+            x=len(data[i]['cautraloi'])
+            return random.sample(data[i]['cautraloi'], x)
+    return None
