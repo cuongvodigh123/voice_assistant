@@ -15,6 +15,16 @@ def main():
     import webbrowser
     import answer
     import sound
+    
+    import nltk
+    from nltk.stem.lancaster import LancasterStemmer
+    stemmer = LancasterStemmer()
+    import numpy
+    import tflearn
+    import tensorflow
+    import random
+    import json
+    import pickle
     wikipedia.set_lang("vi")
     engine = pyttsx3.init()
     voices = engine.getProperty('voices')
@@ -93,22 +103,7 @@ def main():
                         elif "vẻ đẹp" in query: 
                             speak(answer.answer("vẻ đẹp",1))
                     except:
-                        speak("Lỗi 3")  
-                elif "sức khoẻ tốt" in query:
-                    try:
-                        speak(answer.answer("sức khoẻ tốt",3))
-                    except:
-                        speak("Lỗi 4")  
-                elif "bạn tên là gì" in query:
-                    try:
-                        speak(answer.answer("bạn tên là gì",1))
-                    except:
-                        speak("Lỗi 4")  
-                elif "ăn cơm chưa" in query:
-                    try:
-                        speak(answer.answer("ăn cơm chưa",1))
-                    except:
-                        speak("Lỗi 4")  
+                        speak("Lỗi 3")   
                 elif "tìm kiếm thông tin trên mạng" in query:
                     try:
                         speak(answer.answer("tìm kiếm thông tin trên mạng",1))
@@ -119,11 +114,6 @@ def main():
                         webbrowser.open(url)
                     except:
                         speak("Lỗi 6") 
-                elif "muốn tìm hiểu" in query and "công ty công nghệ" in query:
-                    try:
-                        speak(answer.answer("công ty công nghệ",1))
-                    except:
-                        speak("Lỗi 6")
                 elif "hãy định nghĩa" in query:
                     try:
                         speak("đang định nghĩa")
@@ -157,11 +147,30 @@ def main():
                         speak(answer.check_query(query))
                     except:
                         speak("lỗi")
+                elif query == "chat bót nâng cao":
+                    try:
+                        try:
+                            subprocess.check_call(["python", "deep_leaning.py"])
+                            import deep_leaning
+                        except:
+                            import deep_leaning
+                        speak("đang chuẩn bị. hãy đợi 1 lát")
+                        while True:
+                            x=deep_leaning.chat()
+                            if x=="quit":
+                                break
+                            speak(x)
+                    except:
+                        speak("đang khởi động lại")
+                        robot("chat bót nâng cao")
                 else:
                     ok+=1          
                     
                     
-                #second 
+                #second ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                
+                
                 if "mở notepad" in query or "mở wattpad" in query:
                     try:
                         speak("mở nốt bát")
@@ -226,7 +235,7 @@ def main():
                         speak("hãy chắc chắn rằng đã lưu dữ liệu cần thiết")
                         speak("Bạn có chắc chắn muốn tắt nó không")
                         k=take_user_cmd().lower()
-                        if "tôi chắc chắn" in k or "tất nhiên" in query:
+                        if "tôi chắc chắn" in k or "tất nhiên" in query or "có" in query:
                             chrome_pid = os.popen('tasklist /FI "IMAGENAME eq chrome.exe" /FO CSV /NH').read().split(",")[1]
                             os.system(f"taskkill /F /PID {chrome_pid}")
                     except:
@@ -273,12 +282,14 @@ def main():
                 else:
                     ok+=1
                 if ok==2:
-                    speak("tôi không hiểu hoặc không thể giúp bạn, hãy hỏi một câu khác dễ hơn với tôi")    
+                    speak("tôi không hiểu hoặc không thể giúp bạn, hãy hỏi một câu khác dễ hơn với tôi") 
+                    print("xin cháoafjkasfdjhk",ok)
+                       
                     ok=0
     
     speak("hãy nói gì đó để tôi có thể giúp bạn")
     # robot(take_user_cmd().lower())
-    robot("bạn có cảm xúc không")
+    robot("chat bót nâng cao")
     while True:
         speak("Bạn có thêm câu hỏi gì với tôi không ? \n")
 
@@ -291,7 +302,6 @@ def main():
             else:
                 speak(f"chúc một ngày mới an lành ")
             break
-        
         robot(query)
 
 main()

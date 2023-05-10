@@ -11,6 +11,7 @@ import pickle
 
 with open("intents.json",encoding='utf-8') as file:
     data = json.load(file)
+    
 try:
     with open("data.pickle","rb") as f:
         words, labels, training, output = pickle.load(f)
@@ -63,8 +64,7 @@ except:
 
     with open("data.pickle","wb") as f:
         pickle.dump((words, labels, training, output), f)
-    
-# tensorflow.reset_default_graph()
+
 
 net = tflearn.input_data(shape=[None, len(training[0] )])
 net = tflearn.fully_connected(net, 8)
@@ -74,9 +74,6 @@ net = tflearn.regression(net)
 
 model = tflearn.DNN(net)
 
-def setup():
-    model.fit(training, output, n_epoch=1000, batch_size=8, show_metric=True)
-    model.save("model.tflearn")
 
 try:
     model.load("model.tflearn")
