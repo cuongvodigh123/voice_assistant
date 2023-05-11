@@ -28,13 +28,13 @@ def main():
     wikipedia.set_lang("vi")
     engine = pyttsx3.init()
     voices = engine.getProperty('voices')
-    engine.setProperty('voice', voices[1].id)
     engine.setProperty('rate', 150)
     engine.setProperty('volume', 1.0)
     engine.runAndWait()
     
     def speak(audio):
         # print(audio)
+        engine.setProperty('voice', voices[1].id)
         engine.say(audio)
         engine.runAndWait()
     
@@ -148,7 +148,7 @@ def main():
                         speak(answer.check_query(query))
                     except:
                         speak("lỗi")
-                elif query == "chat bót nâng cao":
+                elif query == "nâng cao":
                     try:
                         try:
                             subprocess.check_call(["python", "deep_leaning.py"])
@@ -158,9 +158,9 @@ def main():
                         speak("đang chuẩn bị. hãy đợi 1 lát")
                         while True:
                             x=deep_leaning.chat()
-                            if x=="out":
+                            if x=="go out":
                                 break
-                            speak(x)
+                            # speak(x)
                     except:
                         speak("đang khởi động lại")
                         deep_leaning.load_data()
@@ -285,8 +285,6 @@ def main():
                     ok+=1
                 if ok==2:
                     speak("tôi không hiểu hoặc không thể giúp bạn, hãy hỏi một câu khác dễ hơn với tôi") 
-                    print("xin cháoafjkasfdjhk",ok)
-                       
                     ok=0
     
     speak("hãy nói gì đó để tôi có thể giúp bạn")

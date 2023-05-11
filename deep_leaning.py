@@ -13,10 +13,14 @@ import pyttsx3
 import speech_recognition as sr
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
-engine.setProperty('voice', voices[1].id)
 engine.setProperty('rate', 150)
 engine.setProperty('volume', 1.0)
 engine.runAndWait()
+def speak_english(audio):
+    # print(audio)
+    engine.setProperty('voice', voices[0].id)
+    engine.say(audio)
+    engine.runAndWait()
 def take_english():
     # query = input("user said: ")
     r = sr.Recognizer()
@@ -175,8 +179,8 @@ def chat():
         inp = take_english()
         while inp=="":
             inp = take_english()
-        if inp.lower() == "out":
-            return "out"
+        if inp.lower() == "go out":
+            return "go out"
             break
 
         results = model.predict([bag_of_words(inp, words)])
@@ -186,7 +190,7 @@ def chat():
         for tg in data["intents"]:
             if tg['tag'] == tag:
                 responses = tg['responses']
-
-        print(random.choice(responses))
+        speak_english(random.choice(responses))
+        return random.choice(responses)
 
 # chat()
