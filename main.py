@@ -158,11 +158,12 @@ def main():
                         speak("đang chuẩn bị. hãy đợi 1 lát")
                         while True:
                             x=deep_leaning.chat()
-                            if x=="quit":
+                            if x=="out":
                                 break
                             speak(x)
                     except:
                         speak("đang khởi động lại")
+                        deep_leaning.load_data()
                         robot("chat bót nâng cao")
                 else:
                     ok+=1          
@@ -289,8 +290,8 @@ def main():
                     ok=0
     
     speak("hãy nói gì đó để tôi có thể giúp bạn")
-    # robot(take_user_cmd().lower())
-    robot("hãy nói lại")
+    robot(take_user_cmd().lower())
+    # robot("hãy nói lại")
     while True:
         speak("Bạn có thêm câu hỏi gì với tôi không ? \n")
 
