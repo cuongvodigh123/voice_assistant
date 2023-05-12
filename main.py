@@ -33,7 +33,7 @@ def main():
     engine.runAndWait()
     
     def speak(audio):
-        # print(audio)
+        print(audio,"\n")
         engine.setProperty('voice', voices[1].id)
         engine.say(audio)
         engine.runAndWait()
@@ -54,18 +54,18 @@ def main():
     speak("Tôi là trợ lý âm thanh của bạn")
     
     def take_user_cmd():
-        # query = input("user said: ")
-        r = sr.Recognizer()
-        with sr.Microphone() as source:
-            print("..........LISTENING...........")
-            r.pause_threshold = 1
-            audio = r.listen(source)
-        try:
-            print("..........Recognizing.........")
-            query = r.recognize_google(audio, language='vi-en')
-            print(f"User said: {query}\n")
-        except Exception:
-            query = "hãy nói lại"
+        query = input("user said: ")
+        # r = sr.Recognizer()
+        # with sr.Microphone() as source:
+        #     print("..........LISTENING...........")
+        #     r.pause_threshold = 1
+        #     audio = r.listen(source)
+        # try:
+        #     print("..........Recognizing.........")
+        #     query = r.recognize_google(audio, language='vi-en')
+        #     print(f"User said: {query}\n")
+        # except Exception:
+        #     query = "hãy nói lại"
         return query
     
 

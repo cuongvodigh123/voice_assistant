@@ -17,23 +17,23 @@ engine.setProperty('rate', 150)
 engine.setProperty('volume', 1.0)
 engine.runAndWait()
 def speak_english(audio):
-    # print(audio)
+    print(audio,"\n")
     engine.setProperty('voice', voices[0].id)
     engine.say(audio)
     engine.runAndWait()
 def take_english():
-    # query = input("user said: ")
-    r = sr.Recognizer()
-    with sr.Microphone() as source:
-        print("..........LISTENING...........")
-        r.pause_threshold = 1
-        audio = r.listen(source)
-    try:
-        print("..........Recognizing.........")
-        query = r.recognize_google(audio, language='en')
-        print(f"User said: {query}\n")
-    except Exception:
-        query = "hãy nói lại"
+    query = input("user said: ")
+    # r = sr.Recognizer()
+    # with sr.Microphone() as source:
+    #     print("..........LISTENING...........")
+    #     r.pause_threshold = 1
+    #     audio = r.listen(source)
+    # try:
+    #     print("..........Recognizing.........")
+    #     query = r.recognize_google(audio, language='en')
+    #     print(f"User said: {query}\n")
+    # except Exception:
+    #     query = "hãy nói lại"
     return query
     
 # ?////////////////////////////////////////
